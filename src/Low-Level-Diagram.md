@@ -1,4 +1,4 @@
-         
+~~~text
 +----------------------------------+
 |          TravelAgency     |
 +----------------------------------+
@@ -119,5 +119,5 @@
 | + getActivities() : List<Activity> 
   + getPassengerDetails() : string |
 +-------------------+
-
+~~~
 
