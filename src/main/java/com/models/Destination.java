@@ -3,6 +3,8 @@ package main.java.com.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.java.com.exceptions.AlreadyExistsException;
+
 public class Destination {
     private String id;
     private String name;
@@ -15,6 +17,8 @@ public class Destination {
     }
 
     public void addActivity(Activity activity) {
+        if (activities.contains(activity))
+        throw new AlreadyExistsException();
         activities.add(activity);
     }
 
@@ -22,12 +26,23 @@ public class Destination {
         return activities;
     } 
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+     this.name = name;
+    }
+
     @Override 
     public String toString() {
         String activityString = "";
+        if (activities.size() > 0) {
         for (Activity activity : activities) {
             activityString += activity;
         }
-        return "Destination: " + name + "Activities: " + activityString;
+        return "Destination: " + name + " Activities: " + activityString;
+    }
+        return "Destination: " + name;
     }
 }

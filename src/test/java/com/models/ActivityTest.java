@@ -3,10 +3,11 @@ package test.java.com.models;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
-
 import main.java.com.enums.PassengerType;
 import main.java.com.models.Activity;
 import main.java.com.models.Destination;
@@ -19,9 +20,9 @@ import org.junit.Test;
  */
 public class ActivityTest {
 
-    private  Destination destination;
-    private  Activity activity1;
-    private  Activity activity2;
+    private Destination destination;
+    private Activity activity1;
+    private Activity activity2;
 
     @Before
     public void setUp() {
@@ -47,7 +48,7 @@ public class ActivityTest {
     }
 
     @Test
-    public void testSpacesAvailable() {
+    public void testGetSpacesAvailable() {
         // Initial capacity comparison
         Integer expectedSpace = 1;
         Integer actualSpace = activity1.getSpacesAvailable();
@@ -62,22 +63,49 @@ public class ActivityTest {
     }
 
     @Test
-    public void testCost() {
+    public void testGetCost() {
         Double expectedCost = 100.0;
         Double actualCost = activity1.getCost();
         Assert.assertEquals(expectedCost, actualCost);
     }
 
     @Test
-    public void testName() {
+    public void testGetName() {
         String expectedName = "activity-1";
         String actualName = activity1.getName();
         Assert.assertEquals(expectedName, actualName);
     }
 
     @Test
-    public void TestDestination() {
+    public void TestGetDestination() {
         Assert.assertEquals(destination, activity1.getDestination());
+    }
+
+    @Test
+    public void testGetPassengers() {
+        Passenger passenger1 = new Passenger("pass-1", "passenger1", 1234567890, PassengerType.STANDARD, 200.0);
+        activity1.addPassenger(passenger1);
+        List<Passenger> expectedPassengerList = new ArrayList<>();
+        expectedPassengerList.add(passenger1);
+        Assert.assertEquals(expectedPassengerList, activity1.getPassengers());
+    }
+
+    @Test
+    public void testToString() {
+        String expectedString = activity1.getName() + " - " + activity1.getDescription() + " - Cost: $"
+                + activity1.getCost() + " - Capacity: " + activity1.getCapacity();
+        Assert.assertEquals(expectedString, activity1.toString());
+    }
+
+    @Test
+    public void TestGetCapacity() {
+        Integer expectedInteger = 1;
+        Assert.assertEquals(expectedInteger, activity1.getCapacity());
+    }
+
+    @Test
+    public void testGetDescription() {
+        Assert.assertEquals("description-1", activity1.getDescription());
     }
 
 }

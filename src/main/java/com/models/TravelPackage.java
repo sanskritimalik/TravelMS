@@ -16,7 +16,7 @@ public class TravelPackage {
     private List<Passenger> passengers;
 
     // Constructor to initialize a travel package
-    public TravelPackage(String id, String name, int passengerCapacity) {
+    public TravelPackage(String id, String name, Integer passengerCapacity) {
         this.id = id;
         this.name = name;
         this.passengerCapacity = passengerCapacity;
@@ -25,6 +25,8 @@ public class TravelPackage {
     }
 
     public void addDestination(Destination destination) {
+        if (itinerary.contains(destination))
+        throw new AlreadyExistsException();
         itinerary.add(destination);
     }
 
@@ -36,6 +38,26 @@ public class TravelPackage {
             throw new PassengerCapacityFullException();
         }
         passengers.add(passenger);
+    }
+
+    public List<Destination> getDestinations() {
+        return itinerary;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setPassengerCapacity(Integer passengerCapacity) {
+        this.passengerCapacity = passengerCapacity;
+    }
+
+    public Integer getPassengerCapacity() {
+        return passengerCapacity;
     }
 
     // Prints Itinerary associated with a travel package
@@ -58,7 +80,7 @@ public class TravelPackage {
 
     // Prints passenger details corresponding to each passenger
     public void printPassengerDetails(Passenger passenger) {
-        passenger.getPassengerDetails();
+        System.out.println(passenger.getPassengerDetails());
     }
 
     // Prints available activities corresponding to each destination

@@ -7,7 +7,7 @@ import main.java.com.enums.PassengerType;
 import main.java.com.exceptions.TravelManagementSystemException;
 
 public class Passenger extends User {
-    private Integer passengerNumber;
+    private Integer passengerNumber; // validation
     private PassengerType passengerType;
     private Double balance;
     private List<Activity> activities;
@@ -18,6 +18,10 @@ public class Passenger extends User {
         this.passengerType = passengerType;
         this.balance = balance;
         this.activities = new ArrayList<>();
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
     }
 
     public boolean addActivity(Activity activity) {
@@ -52,8 +56,28 @@ public class Passenger extends User {
                 return true;
 
             default:
-                throw new TravelManagementSystemException();
+                throw new TravelManagementSystemException("Passenger type not supported");
         }
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance( Double balance) {
+        this.balance = balance;
+    }
+
+    public void setPassengerType(PassengerType passengerType) {
+        this.passengerType = passengerType;
+    }
+
+    public PassengerType getPassengerType() {
+        return passengerType;
+    }
+
+    public Integer getPassengerNumber(){
+        return passengerNumber;
     }
 
     @Override

@@ -10,7 +10,7 @@ public class TravelAgency {
     private String id;
     private List<TravelPackage> travelPackages;
 
-    TravelAgency(String id) {
+    public TravelAgency(String id) {
         this.id = id;
         this.travelPackages = new ArrayList<>();
     }
