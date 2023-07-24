@@ -3,6 +3,9 @@ package main.java.com.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activity : activity that can be performed at any destination
+ */
 public class Activity {
     private String id;
     private String name;

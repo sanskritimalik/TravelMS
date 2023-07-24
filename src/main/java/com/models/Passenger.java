@@ -6,6 +6,9 @@ import java.util.List;
 import main.java.com.enums.PassengerType;
 import main.java.com.exceptions.TravelManagementSystemException;
 
+/**
+ * Passenger - a user who can book a travel package, enroll in activities etc
+ */
 public class Passenger extends User {
     private Integer passengerNumber; // validation
     private PassengerType passengerType;

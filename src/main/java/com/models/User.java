@@ -1,5 +1,8 @@
 package main.java.com.models;
 
+/**
+ * User -  model representation of a User
+ */
 public class User {
     private String id;
     private String name;

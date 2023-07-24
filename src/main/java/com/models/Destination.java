@@ -5,6 +5,9 @@ import java.util.List;
 
 import main.java.com.exceptions.AlreadyExistsException;
 
+/**
+ * Destination - a destination that can be covered as part of a travel package
+ */
 public class Destination {
     private String id;
     private String name;
