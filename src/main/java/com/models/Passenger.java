@@ -21,38 +21,38 @@ public class Passenger extends User {
     }
 
     public boolean addActivity(Activity activity) {
-        
+
         if (activities.contains(activity)) {
             return false;
         }
 
         switch (passengerType) {
             case STANDARD:
-               if (balance >= activity.getCost()) {
-                balance -= activity.getCost();
-                activities.add(activity);
-                activity.addPassenger(this);
-                return true;
-            }
-            return false;
+                if (balance >= activity.getCost()) {
+                    balance -= activity.getCost();
+                    activities.add(activity);
+                    activity.addPassenger(this);
+                    return true;
+                }
+                return false;
 
             case GOLD:
-            Double discountedCost = activity.getCost() * 0.9;
-            if (balance >= discountedCost) {
-                balance -= discountedCost;
+                Double discountedCost = activity.getCost() * 0.9;
+                if (balance >= discountedCost) {
+                    balance -= discountedCost;
+                    activities.add(activity);
+                    activity.addPassenger(this);
+                    return true;
+                }
+                return false;
+
+            case PREMIUM:
                 activities.add(activity);
                 activity.addPassenger(this);
                 return true;
-            }
-            return false;
-
-            case PREMIUM:
-             activities.add(activity);
-            activity.addPassenger(this);
-            return true;
 
             default:
-            throw new TravelManagementSystemException();
+                throw new TravelManagementSystemException();
         }
     }
 
@@ -60,20 +60,6 @@ public class Passenger extends User {
     public String toString() {
         StringBuilder details = new StringBuilder();
         details.append("Name: ").append(super.getName()).append(", Passenger Number: ").append(passengerNumber);
-
-        // if (passengerType == PassengerType.STANDARD || passengerType == PassengerType.GOLD) {
-        //     details.append(", Balance: $").append(balance);
-        // }
-
-        // List<String> activityDetails = new ArrayList<>();
-        // for (Activity activity : activities) {
-        //     activityDetails.add(activity.getName() + " (Destination: " + activity.getDestinationId() + ", Price: $" + activity.getCost() + ")");
-        // }
-
-        // if (!activityDetails.isEmpty()) {
-        //     details.append(", Activities: ").append(String.join(", ", activityDetails));
-        // }
-
         return details.toString();
     }
 
@@ -87,7 +73,8 @@ public class Passenger extends User {
 
         List<String> activityDetails = new ArrayList<>();
         for (Activity activity : activities) {
-            activityDetails.add(activity.getName() + " (Destination: " + activity.getDestinationId() + ", Price: $" + activity.getCost() + ")");
+            activityDetails.add(activity.getName() + " (Destination: " + activity.getDestination() + ", Price: $"
+                    + activity.getCost() + ")");
         }
 
         if (!activityDetails.isEmpty()) {
@@ -97,5 +84,3 @@ public class Passenger extends User {
         return details.toString();
     }
 }
-
-

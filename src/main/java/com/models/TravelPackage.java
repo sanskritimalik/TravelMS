@@ -2,12 +2,11 @@ package main.java.com.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.Exception;
-
-import main.java.com.exceptions.PassengerCapacityFullException;
+import main.java.com.exceptions.*;
 
 /**
- * TravelPackage
+ * TravelPackage - A package to be maintained by different travel agencies comprising of passenger
+ * details & itinerary.
  */
 public class TravelPackage {
     private String id;
@@ -16,6 +15,7 @@ public class TravelPackage {
     private List<Destination> itinerary;
     private List<Passenger> passengers;
 
+    // Constructor to initialize a travel package
     public TravelPackage(String id, String name, int passengerCapacity) {
         this.id = id;
         this.name = name;
@@ -35,9 +35,10 @@ public class TravelPackage {
         if (passengers.size() >= passengerCapacity) {
             throw new PassengerCapacityFullException();
         }
-            passengers.add(passenger);
+        passengers.add(passenger);
     }
 
+    // Prints Itinerary associated with a travel package
     public void printItinerary() {
         System.out.println("Travel Package: " + name);
         for (Destination destination : itinerary) {
@@ -45,6 +46,7 @@ public class TravelPackage {
         }
     }
 
+    // Prints Passenger List associated with a travel package
     public void printPassengerList() {
         System.out.println("Travel Package: " + name);
         System.out.println("Passenger Capacity: " + passengerCapacity);
@@ -54,10 +56,12 @@ public class TravelPackage {
         }
     }
 
+    // Prints passenger details corresponding to each passenger
     public void printPassengerDetails(Passenger passenger) {
         passenger.getPassengerDetails();
     }
-// fine
+
+    // Prints available activities corresponding to each destination
     public void printAvailableActivities() {
         System.out.println("Available Activities for " + name);
         for (Destination destination : itinerary) {
